@@ -6,6 +6,8 @@ import { useUserPreferences } from '../../contexts/UserPreferencesContext'
 import AnimatedCard from '../common/AnimatedCard'
 import AnimatedButton from '../common/AnimatedButton'
 import AnimatedInput from '../common/AnimatedInput'
+import CompatibilityMatrix from './CompatibilityMatrix'
+import RoutineTimeline from './RoutineTimeline'
 import { motion, AnimatePresence } from 'framer-motion'
 import './RoutineBuilder.css'
 
@@ -155,6 +157,19 @@ const RoutineBuilder = () => {
             ))}
           </div>
         </AnimatedCard>
+      )}
+
+      {/* Visual Feedback Components */}
+      {routine[timeOfDay].length > 0 && (
+        <>
+          <RoutineTimeline routine={routine} timeOfDay={timeOfDay} />
+          <CompatibilityMatrix 
+            products={routine[timeOfDay]} 
+            onCellClick={(cell) => {
+              alert(`${cell.ing1} + ${cell.ing2}: ${cell.reason}`)
+            }}
+          />
+        </>
       )}
 
       {/* Function Blocks */}
