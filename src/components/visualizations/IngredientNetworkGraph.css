@@ -93,7 +93,7 @@
 .ingredient-network-tooltip {
   position: absolute;
   top: 1rem;
-  right: 1rem;
+  left: 1rem;
   background: white;
   padding: 1rem;
   border-radius: 8px;

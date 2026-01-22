@@ -205,7 +205,7 @@ const IngredientNetworkGraph = () => {
         <ForceGraph2D
           ref={graphRef}
           graphData={graphData}
-          nodeLabel={(node) => `${node.name}\n${node.description}`}
+          nodeLabel={() => ''}
           nodeColor={getNodeColor}
           nodeVal={(node) => {
             // Smaller size based on number of connections
@@ -235,12 +235,14 @@ const IngredientNetworkGraph = () => {
             ).length
             const nodeSize = 8 + connections * 1.5
             
-            // Draw background circle with border
+            // Draw background circle with border (with reduced opacity)
             ctx.beginPath()
             ctx.arc(node.x, node.y, nodeSize, 0, 2 * Math.PI, false)
+            ctx.globalAlpha = 0.6
             ctx.fillStyle = nodeColor
             ctx.fill()
-            ctx.strokeStyle = '#2E7D32'
+            ctx.globalAlpha = 1.0
+            ctx.strokeStyle = 'rgba(46, 125, 50, 0.5)'
             ctx.lineWidth = 2 / Math.max(globalScale, 0.5)
             ctx.stroke()
             
@@ -253,6 +255,28 @@ const IngredientNetworkGraph = () => {
             ctx.fillText(iconEmoji, node.x, node.y)
           }}
           nodeCanvasObjectMode={() => 'replace'}
+          onBackground={(ctx, width, height) => {
+            // Draw grid pattern
+            const gridSize = 50
+            ctx.strokeStyle = 'rgba(200, 230, 201, 0.3)'
+            ctx.lineWidth = 1
+            
+            // Draw vertical lines
+            for (let x = 0; x <= width; x += gridSize) {
+              ctx.beginPath()
+              ctx.moveTo(x, 0)
+              ctx.lineTo(x, height)
+              ctx.stroke()
+            }
+            
+            // Draw horizontal lines
+            for (let y = 0; y <= height; y += gridSize) {
+              ctx.beginPath()
+              ctx.moveTo(0, y)
+              ctx.lineTo(width, y)
+              ctx.stroke()
+            }
+          }}
           onNodeClick={handleNodeClick}
           onNodeHover={handleNodeHover}
           cooldownTicks={100}
@@ -297,24 +321,23 @@ const IngredientNetworkGraph = () => {
             }
           }}
         />
+        {hoveredNode && (
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="ingredient-network-tooltip"
+          >
+            <h3>{hoveredNode.name}</h3>
+            <p>{hoveredNode.description}</p>
+            <span className={`ingredient-network-status ingredient-network-status--${hoveredNode.status}`}>
+              {hoveredNode.status === 'works' && '✅ Works for you'}
+              {hoveredNode.status === 'avoid' && '⛔ Avoid'}
+              {hoveredNode.status === 'suspect' && '⚠️ Possible trigger'}
+              {hoveredNode.status === 'neutral' && '⚪ Neutral'}
+            </span>
+          </motion.div>
+        )}
       </div>
-
-      {hoveredNode && (
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="ingredient-network-tooltip"
-        >
-          <h3>{hoveredNode.name}</h3>
-          <p>{hoveredNode.description}</p>
-          <span className={`ingredient-network-status ingredient-network-status--${hoveredNode.status}`}>
-            {hoveredNode.status === 'works' && '✅ Works for you'}
-            {hoveredNode.status === 'avoid' && '⛔ Avoid'}
-            {hoveredNode.status === 'suspect' && '⚠️ Possible trigger'}
-            {hoveredNode.status === 'neutral' && '⚪ Neutral'}
-          </span>
-        </motion.div>
-      )}
 
       {selectedNode && (
         <motion.div

@@ -1,4 +1,4 @@
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useAuth } from '../../contexts/AuthContext'
 import AnimatedButton from './AnimatedButton'
 import './Navigation.css'
@@ -6,9 +6,11 @@ import './Navigation.css'
 const Navigation = () => {
   const { user, signOut } = useAuth()
   const location = useLocation()
+  const navigate = useNavigate()
 
   const handleSignOut = async () => {
     await signOut()
+    navigate('/login')
   }
 
   const isActive = (path) => {

@@ -11,24 +11,47 @@ export const useAuth = () => {
 }
 
 export const AuthProvider = ({ children }) => {
-  // Authentication disabled - provide mock user
-  const [user] = useState({
-    id: 'mock-user-id',
-    email: 'user@example.com',
+  // Load user from localStorage on mount
+  const [user, setUser] = useState(() => {
+    const storedUser = localStorage.getItem('auth_user')
+    return storedUser ? JSON.parse(storedUser) : null
   })
   const [session] = useState(null)
   const [loading] = useState(false)
 
-  // Disabled authentication methods
+  // Dummy credentials
+  const DEMO_EMAIL = 'demo@gmail.com'
+  const DEMO_PASSWORD = 'demo'
+
   const signUp = async (email, password) => {
-    return { data: null, error: null }
+    // For demo purposes, signup is disabled
+    return { data: null, error: { message: 'Sign up is not available in demo mode' } }
   }
 
   const signIn = async (email, password) => {
-    return { data: null, error: null }
+    // Simulate API delay
+    await new Promise(resolve => setTimeout(resolve, 500))
+
+    // Validate credentials
+    if (email === DEMO_EMAIL && password === DEMO_PASSWORD) {
+      const userData = {
+        id: 'demo-user-id',
+        email: DEMO_EMAIL,
+      }
+      setUser(userData)
+      localStorage.setItem('auth_user', JSON.stringify(userData))
+      return { data: { user: userData }, error: null }
+    } else {
+      return { 
+        data: null, 
+        error: { message: 'Invalid email or password' } 
+      }
+    }
   }
 
   const signOut = async () => {
+    setUser(null)
+    localStorage.removeItem('auth_user')
     return { error: null }
   }
 

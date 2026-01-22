@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
 import AnimatedCard from '../components/common/AnimatedCard'
@@ -12,8 +12,20 @@ const Login = () => {
   const [agreedToDisclaimer, setAgreedToDisclaimer] = useState(false)
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
-  const { signIn } = useAuth()
+  const { signIn, user } = useAuth()
   const navigate = useNavigate()
+
+  // Redirect if already logged in
+  useEffect(() => {
+    if (user) {
+      const hasCompletedOnboarding = localStorage.getItem('onboarding_complete')
+      if (!hasCompletedOnboarding) {
+        navigate('/onboarding/survey')
+      } else {
+        navigate('/app/dashboard')
+      }
+    }
+  }, [user, navigate])
 
   const handleSubmit = async (e) => {
     e.preventDefault()
