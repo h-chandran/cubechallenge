@@ -212,14 +212,12 @@ const IngredientNetworkGraph = () => {
             const connections = graphData.links.filter(
               link => link.source === node.id || link.target === node.id
             ).length
-            return 12 + connections * 1.5
+            return 1 + connections * 1.5
           }}
           linkColor={getLinkColor}
           linkWidth={(link) => link.type === 'conflict' ? 3 : 2}
-          linkDirectionalArrowLength={6}
-          linkDirectionalArrowRelPos={1}
           // Spread out the network with longer connections
-          linkDistance={250}
+          linkDistance={2000}
           linkStrength={0.3}
           nodeRepulsion={200}
           d3AlphaDecay={0.02}
@@ -235,14 +233,14 @@ const IngredientNetworkGraph = () => {
             const connections = graphData.links.filter(
               link => link.source === node.id || link.target === node.id
             ).length
-            const nodeSize = 12 + connections * 1.5
+            const nodeSize = 8 + connections * 1.5
             
             // Draw background circle with border
             ctx.beginPath()
             ctx.arc(node.x, node.y, nodeSize, 0, 2 * Math.PI, false)
             ctx.fillStyle = nodeColor
             ctx.fill()
-            ctx.strokeStyle = '#fff'
+            ctx.strokeStyle = '#2E7D32'
             ctx.lineWidth = 2 / Math.max(globalScale, 0.5)
             ctx.stroke()
             
@@ -259,16 +257,43 @@ const IngredientNetworkGraph = () => {
           onNodeHover={handleNodeHover}
           cooldownTicks={100}
           onEngineStop={() => {
-            if (graphRef.current) {
-              // Zoom out for initial display
-              graphRef.current.zoomToFit(400, 50)
-              // Additional zoom out
-              setTimeout(() => {
-                if (graphRef.current) {
-                  const currentZoom = graphRef.current.zoom()
-                  graphRef.current.zoom(currentZoom * 0.7)
-                }
-              }, 100)
+            if (graphRef.current && graphData.nodes.length > 0) {
+              // Calculate center of all nodes
+              const xs = graphData.nodes.map(n => n.x).filter(x => x !== undefined)
+              const ys = graphData.nodes.map(n => n.y).filter(y => y !== undefined)
+              
+              if (xs.length > 0 && ys.length > 0) {
+                const centerX = xs.reduce((a, b) => a + b, 0) / xs.length
+                const centerY = ys.reduce((a, b) => a + b, 0) / ys.length
+                
+                // Center the graph at the calculated center
+                graphRef.current.centerAt(centerX, centerY, 1000)
+                
+                // Zoom out for initial display
+                setTimeout(() => {
+                  if (graphRef.current) {
+                    graphRef.current.zoomToFit(1000, 250)
+                    // Additional zoom out
+                    setTimeout(() => {
+                      if (graphRef.current) {
+                        const currentZoom = graphRef.current.zoom()
+                        graphRef.current.zoom(currentZoom * 0.7)
+                        // Re-center after zoom
+                        graphRef.current.centerAt(centerX + 95, centerY +  35, 1000)
+                      }
+                    }, 100)
+                  }
+                }, 50)
+              } else {
+                // Fallback: use zoomToFit which should center automatically
+                graphRef.current.zoomToFit(400, 50)
+                setTimeout(() => {
+                  if (graphRef.current) {
+                    const currentZoom = graphRef.current.zoom()
+                    graphRef.current.zoom(currentZoom * 0.3)
+                  }
+                }, 100)
+              }
             }
           }}
         />
