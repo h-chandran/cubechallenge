@@ -39,104 +39,17 @@
   --shadow-blue: 0 4px 14px 0 rgba(33, 150, 243, 0.15);
 }
 
-/* Fun colorful text animations */
-@keyframes rainbow {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-@keyframes colorShift {
-  0%, 100% { filter: hue-rotate(0deg); }
-  25% { filter: hue-rotate(90deg); }
-  50% { filter: hue-rotate(180deg); }
-  75% { filter: hue-rotate(270deg); }
-}
-
-/* Fun gradient text styles */
-.fun-gradient-1 {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-  background-size: 200% 200%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: rainbow 3s ease infinite;
-}
-
-.fun-gradient-2 {
-  background: linear-gradient(135deg, #f093fb 0%, #f5576c 50%, #4facfe 100%);
-  background-size: 200% 200%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: rainbow 4s ease infinite;
-}
-
-.fun-gradient-3 {
-  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 50%, #43e97b 100%);
-  background-size: 200% 200%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: rainbow 5s ease infinite;
-}
-
-.fun-gradient-4 {
-  background: linear-gradient(135deg, #fa709a 0%, #fee140 50%, #30cfd0 100%);
-  background-size: 200% 200%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: rainbow 3.5s ease infinite;
-}
-
-.fun-gradient-5 {
-  background: linear-gradient(135deg, #a8edea 0%, #fed6e3 50%, #ff9a9e 100%);
-  background-size: 200% 200%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: rainbow 4.5s ease infinite;
-}
-
-/* Apply fun colors to all headings */
+/* Apply original color palette to text elements */
 h1, h2, h3, h4, h5, h6 {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-  background-size: 200% 200%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: rainbow 3s ease infinite;
+  color: var(--accent-blue);
 }
 
-/* Apply fun colors to paragraphs */
 p {
-  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 50%, #43e97b 100%);
-  background-size: 200% 200%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: rainbow 5s ease infinite;
+  color: var(--text-primary);
 }
 
-/* Apply fun colors to labels */
 label {
-  background: linear-gradient(135deg, #fa709a 0%, #fee140 50%, #30cfd0 100%);
-  background-size: 200% 200%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: rainbow 3.5s ease infinite;
-}
-
-/* Apply fun colors to spans and other text elements */
-span:not(.code-keyword):not(.code-string):not(.code-function):not(.code-punctuation):not(.code-jsx) {
-  background: linear-gradient(135deg, #a8edea 0%, #fed6e3 50%, #ff9a9e 100%);
-  background-size: 200% 200%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: rainbow 4.5s ease infinite;
+  color: var(--accent-blue);
 }
 
 body {

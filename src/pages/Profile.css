@@ -10,28 +10,12 @@
 
 .profile-header h1 {
   font-size: 2rem;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 30%, #f093fb 60%, #4facfe 100%);
-  background-size: 300% 300%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: rainbow 3s ease infinite;
+  color: var(--accent-blue);
   margin-bottom: 0.5rem;
 }
 
 .profile-header p {
-  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 30%, #43e97b 60%, #a8edea 100%);
-  background-size: 300% 300%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: rainbow 5s ease infinite;
-}
-
-@keyframes rainbow {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  color: var(--text-primary);
 }
 
 .profile-content {
@@ -43,12 +27,7 @@
 .profile-info-card h3 {
   font-size: 1.25rem;
   margin-bottom: 1rem;
-  background: linear-gradient(135deg, #fa709a 0%, #fee140 30%, #30cfd0 60%, #667eea 100%);
-  background-size: 300% 300%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: rainbow 4s ease infinite;
+  color: var(--accent-blue);
 }
 
 .profile-info-item {
@@ -60,21 +39,11 @@
 
 .profile-info-label {
   font-weight: 600;
-  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 30%, #43e97b 60%, #a8edea 100%);
-  background-size: 300% 300%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: rainbow 5s ease infinite;
+  color: var(--accent-blue);
 }
 
 .profile-info-value {
-  background: linear-gradient(135deg, #fa709a 0%, #fee140 30%, #30cfd0 60%, #667eea 100%);
-  background-size: 300% 300%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: rainbow 4s ease infinite;
+  color: var(--text-primary);
 }
 
 .sign-out-button {
@@ -92,12 +61,7 @@
   padding: 0.75rem 1.5rem;
   border: none;
   background: transparent;
-  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 30%, #43e97b 60%, #a8edea 100%);
-  background-size: 300% 300%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: rainbow 5s ease infinite;
+  color: var(--accent-blue);
   font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
@@ -107,21 +71,11 @@
 }
 
 .profile-tab:hover {
-  background: linear-gradient(135deg, #fa709a 0%, #fee140 30%, #30cfd0 60%, #667eea 100%);
-  background-size: 300% 300%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: rainbow 3s ease infinite;
+  color: var(--secondary-color);
 }
 
 .profile-tab.active {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 30%, #f093fb 60%, #4facfe 100%);
-  background-size: 300% 300%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: rainbow 3s ease infinite;
+  color: var(--accent-blue);
   border-bottom-color: var(--accent-blue);
 }
 
@@ -145,22 +99,12 @@
 .preference-section h4 {
   font-size: 1.125rem;
   font-weight: 600;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 30%, #f093fb 60%, #4facfe 100%);
-  background-size: 300% 300%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: rainbow 3s ease infinite;
+  color: var(--accent-blue);
   margin-bottom: 0.5rem;
 }
 
 .section-description {
-  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 30%, #43e97b 60%, #a8edea 100%);
-  background-size: 300% 300%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: rainbow 5s ease infinite;
+  color: var(--text-primary);
   font-size: 0.875rem;
   margin-bottom: 1rem;
 }
@@ -184,23 +128,13 @@
 
 .ingredient-search-name {
   font-weight: 600;
-  background: linear-gradient(135deg, #fa709a 0%, #fee140 30%, #30cfd0 60%, #667eea 100%);
-  background-size: 300% 300%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: rainbow 4s ease infinite;
+  color: var(--accent-blue);
   margin-bottom: 0.25rem;
 }
 
 .ingredient-search-desc {
   font-size: 0.875rem;
-  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 30%, #43e97b 60%, #a8edea 100%);
-  background-size: 300% 300%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: rainbow 5s ease infinite;
+  color: var(--text-primary);
 }
 
 .ingredient-search-actions {
@@ -221,12 +155,7 @@
 .preference-list h5 {
   font-size: 1rem;
   font-weight: 600;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 30%, #f093fb 60%, #4facfe 100%);
-  background-size: 300% 300%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: rainbow 3s ease infinite;
+  color: var(--accent-blue);
   margin-bottom: 0.75rem;
 }
 
@@ -282,12 +211,7 @@
 .skin-type-content h4 {
   font-size: 1.125rem;
   font-weight: 600;
-  background: linear-gradient(135deg, #fa709a 0%, #fee140 30%, #30cfd0 60%, #667eea 100%);
-  background-size: 300% 300%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: rainbow 4s ease infinite;
+  color: var(--accent-blue);
   margin-bottom: 0.5rem;
 }
 
@@ -303,12 +227,7 @@
   border: 2px solid var(--border-color);
   border-radius: 8px;
   background: var(--bg-primary);
-  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 30%, #43e97b 60%, #a8edea 100%);
-  background-size: 300% 300%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: rainbow 5s ease infinite;
+  color: var(--accent-blue);
   font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
@@ -328,21 +247,11 @@
 
 .skin-type-selected {
   margin-top: 1rem;
-  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 30%, #43e97b 60%, #a8edea 100%);
-  background-size: 300% 300%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: rainbow 5s ease infinite;
+  color: var(--text-primary);
 }
 
 .skin-type-selected strong {
-  background: linear-gradient(135deg, #fa709a 0%, #fee140 30%, #30cfd0 60%, #667eea 100%);
-  background-size: 300% 300%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: rainbow 4s ease infinite;
+  color: var(--accent-blue);
 }
 
 .profile-loading {
@@ -351,11 +260,6 @@
   align-items: center;
   min-height: 50vh;
   font-size: 1.125rem;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 30%, #f093fb 60%, #4facfe 100%);
-  background-size: 300% 300%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: rainbow 3s ease infinite;
+  color: var(--accent-blue);
 }
 
