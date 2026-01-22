@@ -48,6 +48,9 @@ const Navigation = () => {
           <Link to="/app/fingerprint" className={`navigation-link ${isActive('/app/fingerprint')}`}>
             Fingerprint
           </Link>
+          <Link to="/app/scanner" className={`navigation-link ${isActive('/app/scanner')}`}>
+            Scanner
+          </Link>
         </div>
 
         <div className="navigation-actions">
