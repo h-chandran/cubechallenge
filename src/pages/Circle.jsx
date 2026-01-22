@@ -2,6 +2,7 @@ import { useParams, Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import AnimatedCard from '../components/common/AnimatedCard'
 import ProductCard from '../components/common/ProductCard'
+import SimilarityHeatmap from '../components/visualizations/SimilarityHeatmap'
 import { getCircleById, getPostsByCircle, getTopProductsByCircle } from '../data/mockData'
 import { products, getProductById } from '../data/products'
 import './Circle.css'
@@ -66,6 +67,9 @@ const Circle = () => {
             tend to avoid <strong>{circle.topDislikedIngredients.slice(0, 2).join(' and ')}</strong>.
           </p>
         </AnimatedCard>
+
+        {/* Similarity Heatmap */}
+        <SimilarityHeatmap circle={circle} />
 
         {/* Circle Insights */}
         <div className="circle-page-insights">
