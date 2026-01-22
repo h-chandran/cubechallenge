@@ -10,6 +10,7 @@ const Signup = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
+  const [agreedToDisclaimer, setAgreedToDisclaimer] = useState(false)
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
   const { signUp } = useAuth()
@@ -29,6 +30,11 @@ const Signup = () => {
       return
     }
 
+    if (!agreedToDisclaimer) {
+      setError('Please agree to the disclaimer to continue')
+      return
+    }
+
     setLoading(true)
 
     try {
@@ -36,7 +42,7 @@ const Signup = () => {
       if (error) {
         setError(error.message)
       } else {
-        navigate('/dashboard')
+        navigate('/onboarding/survey')
       }
     } catch (err) {
       setError('An unexpected error occurred')
@@ -82,6 +88,16 @@ const Signup = () => {
             placeholder="Confirm your password"
             required
           />
+
+          <label className="auth-checkbox">
+            <input
+              type="checkbox"
+              checked={agreedToDisclaimer}
+              onChange={(e) => setAgreedToDisclaimer(e.target.checked)}
+              required
+            />
+            <span>I agree to the <Link to="/disclaimer" target="_blank">disclaimer</Link> and understand this is for informational purposes only</span>
+          </label>
 
           <AnimatedButton
             type="submit"

@@ -1,0 +1,124 @@
+.landing {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+}
+
+.landing-hero {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.landing-hero-content {
+  max-width: 800px;
+}
+
+.landing-headline {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--accent-blue);
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+}
+
+.landing-subhead {
+  font-size: 1.25rem;
+  color: var(--text-secondary);
+  margin-bottom: 2.5rem;
+  line-height: 1.6;
+}
+
+.landing-cta {
+  font-size: 1.125rem;
+  padding: 1rem 2.5rem;
+}
+
+.landing-pillars {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  padding: 4rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.landing-pillar {
+  text-align: center;
+  padding: 2rem;
+}
+
+.landing-pillar-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.landing-pillar h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--accent-blue);
+}
+
+.landing-pillar p {
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.landing-footer {
+  background: var(--bg-primary);
+  border-top: 1px solid var(--border-color);
+  padding: 2rem;
+  text-align: center;
+}
+
+.landing-footer-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.landing-footer-link {
+  color: var(--accent-blue);
+  text-decoration: none;
+  font-size: 0.875rem;
+  transition: color 0.2s;
+}
+
+.landing-footer-link:hover {
+  color: var(--accent-blue-dark);
+  text-decoration: underline;
+}
+
+.landing-footer-separator {
+  color: var(--text-light);
+}
+
+.landing-footer-note {
+  font-size: 0.75rem;
+  color: var(--text-light);
+  margin-top: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .landing-headline {
+    font-size: 2rem;
+  }
+
+  .landing-subhead {
+    font-size: 1rem;
+  }
+
+  .landing-pillars {
+    grid-template-columns: 1fr;
+    padding: 2rem 1rem;
+  }
+}
+

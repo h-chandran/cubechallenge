@@ -1,0 +1,98 @@
+.product-card {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.product-card:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--accent-blue);
+}
+
+.product-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.product-card-info {
+  flex: 1;
+}
+
+.product-card-name {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+}
+
+.product-card-brand {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
+.product-card-score {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+.product-card-score--high {
+  background: var(--success-color);
+  color: white;
+}
+
+.product-card-score--medium {
+  background: var(--warning-color);
+  color: white;
+}
+
+.product-card-score--low {
+  background: var(--error-color);
+  color: white;
+}
+
+.product-card-score-value {
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+.product-card-score-label {
+  font-size: 0.625rem;
+  text-transform: uppercase;
+  opacity: 0.9;
+}
+
+.product-card-reason {
+  font-size: 0.875rem;
+  color: var(--accent-blue);
+  font-weight: 500;
+  margin-bottom: 0.75rem;
+}
+
+.product-card-description {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+.product-card-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.product-card-action {
+  flex: 1;
+  min-width: 100px;
+  font-size: 0.875rem;
+  padding: 0.5rem 1rem;
+}
+

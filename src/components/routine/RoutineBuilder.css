@@ -10,28 +10,12 @@
 
 .routine-builder-header h2 {
   font-size: 2rem;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 30%, #f093fb 60%, #4facfe 100%);
-  background-size: 300% 300%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: rainbow 3s ease infinite;
+  color: var(--accent-blue);
   margin-bottom: 0.5rem;
 }
 
 .routine-builder-header p {
-  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 30%, #43e97b 60%, #a8edea 100%);
-  background-size: 300% 300%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: rainbow 5s ease infinite;
-}
-
-@keyframes rainbow {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  color: var(--text-primary);
 }
 
 .routine-builder-content {
@@ -55,12 +39,7 @@
 .routine-section h3 {
   font-size: 1.25rem;
   margin-bottom: 1rem;
-  background: linear-gradient(135deg, #fa709a 0%, #fee140 30%, #30cfd0 60%, #667eea 100%);
-  background-size: 300% 300%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: rainbow 4s ease infinite;
+  color: var(--accent-blue);
 }
 
 .search-input-group {
@@ -94,44 +73,24 @@
 
 .product-result-name {
   font-weight: 600;
-  background: linear-gradient(135deg, #fa709a 0%, #fee140 30%, #30cfd0 60%, #667eea 100%);
-  background-size: 300% 300%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: rainbow 4s ease infinite;
+  color: var(--accent-blue);
   margin-bottom: 0.25rem;
 }
 
 .product-result-brand {
   font-size: 0.875rem;
-  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 30%, #43e97b 60%, #a8edea 100%);
-  background-size: 300% 300%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: rainbow 5s ease infinite;
+  color: var(--text-primary);
   margin-bottom: 0.25rem;
 }
 
 .product-result-function {
   font-size: 0.75rem;
-  background: linear-gradient(135deg, #a8edea 0%, #fed6e3 30%, #ff9a9e 60%, #fecfef 100%);
-  background-size: 300% 300%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: rainbow 4.5s ease infinite;
+  color: var(--secondary-color);
   text-transform: capitalize;
 }
 
 .empty-routine {
-  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 30%, #43e97b 60%, #a8edea 100%);
-  background-size: 300% 300%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: rainbow 5s ease infinite;
+  color: var(--text-primary);
   font-style: italic;
   text-align: center;
   padding: 2rem;
@@ -178,12 +137,7 @@
 
 .routine-step-name {
   font-weight: 600;
-  background: linear-gradient(135deg, #fa709a 0%, #fee140 30%, #30cfd0 60%, #667eea 100%);
-  background-size: 300% 300%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: rainbow 4s ease infinite;
+  color: var(--accent-blue);
   margin-bottom: 0.25rem;
 }
 
@@ -191,12 +145,7 @@
   display: flex;
   gap: 0.75rem;
   font-size: 0.875rem;
-  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 30%, #43e97b 60%, #a8edea 100%);
-  background-size: 300% 300%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: rainbow 5s ease infinite;
+  color: var(--text-primary);
 }
 
 .routine-step-function {
@@ -205,12 +154,7 @@
 }
 
 .routine-step-brand {
-  background: linear-gradient(135deg, #a8edea 0%, #fed6e3 30%, #ff9a9e 60%, #fecfef 100%);
-  background-size: 300% 300%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: rainbow 4.5s ease infinite;
+  color: var(--secondary-color);
 }
 
 .remove-button {
@@ -226,12 +170,7 @@
 .analysis-panel h3 {
   font-size: 1.25rem;
   margin-bottom: 1.5rem;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 30%, #f093fb 60%, #4facfe 100%);
-  background-size: 300% 300%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: rainbow 3s ease infinite;
+  color: var(--accent-blue);
 }
 
 .analysis-warnings {
@@ -246,12 +185,7 @@
   font-size: 1rem;
   font-weight: 600;
   margin-bottom: 0.75rem;
-  background: linear-gradient(135deg, #fa709a 0%, #fee140 30%, #30cfd0 60%, #667eea 100%);
-  background-size: 300% 300%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: rainbow 4s ease infinite;
+  color: var(--accent-blue);
 }
 
 .warning-item {
@@ -262,12 +196,7 @@
   margin-bottom: 0.5rem;
   font-size: 0.875rem;
   line-height: 1.5;
-  background-image: linear-gradient(135deg, #667eea 0%, #764ba2 30%, #f093fb 60%, #4facfe 100%);
-  background-size: 300% 300%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: rainbow 3s ease infinite;
+  color: var(--text-primary);
 }
 
 .warning-item-error {
@@ -285,12 +214,7 @@
   font-size: 1rem;
   font-weight: 600;
   margin-bottom: 0.75rem;
-  background: linear-gradient(135deg, #fa709a 0%, #fee140 30%, #30cfd0 60%, #667eea 100%);
-  background-size: 300% 300%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: rainbow 4s ease infinite;
+  color: var(--accent-blue);
 }
 
 .ingredient-tags {
@@ -316,22 +240,12 @@
   padding: 1rem;
   background-color: #D1FAE5;
   border-radius: 8px;
+  color: var(--secondary-color);
   font-weight: 500;
-  background-image: linear-gradient(135deg, #4facfe 0%, #00f2fe 30%, #43e97b 60%, #a8edea 100%);
-  background-size: 300% 300%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: rainbow 5s ease infinite;
 }
 
 .analysis-empty {
-  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 30%, #43e97b 60%, #a8edea 100%);
-  background-size: 300% 300%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: rainbow 5s ease infinite;
+  color: var(--text-primary);
   font-style: italic;
   text-align: center;
   padding: 2rem;

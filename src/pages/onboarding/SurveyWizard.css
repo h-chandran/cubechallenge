@@ -1,0 +1,130 @@
+.survey-wizard {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--bg-secondary) 100%);
+  padding: 2rem;
+}
+
+.survey-wizard-container {
+  width: 100%;
+  max-width: 600px;
+}
+
+.survey-wizard-progress {
+  margin-bottom: 2rem;
+}
+
+.survey-wizard-progress-bar {
+  width: 100%;
+  height: 8px;
+  background: var(--border-color);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+}
+
+.survey-wizard-progress-fill {
+  height: 100%;
+  background: var(--accent-blue);
+  transition: width 0.3s ease;
+}
+
+.survey-wizard-progress-text {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  text-align: center;
+  display: block;
+}
+
+.survey-wizard-card {
+  padding: 2.5rem;
+}
+
+.survey-wizard-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--accent-blue);
+  margin-bottom: 0.5rem;
+}
+
+.survey-wizard-question {
+  font-size: 1.125rem;
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.survey-wizard-warning {
+  background: #FFF3CD;
+  border: 1px solid var(--warning-color);
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  color: var(--text-primary);
+  font-size: 0.875rem;
+}
+
+.survey-wizard-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.survey-wizard-option {
+  padding: 1rem 1.5rem;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.survey-wizard-option:hover {
+  border-color: var(--accent-blue);
+  background: var(--bg-light-blue);
+}
+
+.survey-wizard-option--selected {
+  border-color: var(--accent-blue);
+  background: var(--accent-blue);
+  color: white;
+}
+
+.survey-wizard-option-check {
+  font-size: 1.25rem;
+}
+
+.survey-wizard-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+}
+
+.survey-wizard-back,
+.survey-wizard-next {
+  min-width: 120px;
+}
+
+@media (max-width: 768px) {
+  .survey-wizard-card {
+    padding: 1.5rem;
+  }
+
+  .survey-wizard-title {
+    font-size: 1.5rem;
+  }
+
+  .survey-wizard-question {
+    font-size: 1rem;
+  }
+}
+

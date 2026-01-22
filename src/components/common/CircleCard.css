@@ -1,0 +1,117 @@
+.circle-card {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.circle-card:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--accent-blue);
+  transform: translateY(-2px);
+}
+
+.circle-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.circle-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.circle-card-name {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  flex: 1;
+}
+
+.circle-card-match {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.5rem 0.75rem;
+  background: var(--accent-blue);
+  color: white;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+.circle-card-match-value {
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+.circle-card-match-label {
+  font-size: 0.625rem;
+  text-transform: uppercase;
+  opacity: 0.9;
+}
+
+.circle-card-description {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+.circle-card-overlap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.circle-card-overlap-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.circle-card-overlap-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+}
+
+.circle-card-ingredients {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.circle-card-ingredient {
+  padding: 0.25rem 0.75rem;
+  border-radius: 16px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.circle-card-ingredient--liked {
+  background: var(--success-color);
+  color: white;
+}
+
+.circle-card-ingredient--disliked {
+  background: var(--error-color);
+  color: white;
+}
+
+.circle-card-badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  background: var(--accent-blue);
+  color: white;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-top: 0.5rem;
+}
+

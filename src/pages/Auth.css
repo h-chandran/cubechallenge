@@ -62,3 +62,28 @@
   text-decoration: underline;
 }
 
+.auth-checkbox {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+  line-height: 1.5;
+}
+
+.auth-checkbox input[type="checkbox"] {
+  margin-top: 0.25rem;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.auth-checkbox a {
+  color: var(--accent-blue);
+  text-decoration: none;
+}
+
+.auth-checkbox a:hover {
+  text-decoration: underline;
+}
+

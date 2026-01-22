@@ -1,0 +1,85 @@
+.insight-card {
+  background: var(--bg-primary);
+  border: 2px solid var(--accent-blue);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.insight-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.insight-card-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.insight-card-badge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.insight-card-badge--success {
+  background: var(--success-color);
+  color: white;
+}
+
+.insight-card-badge--warning {
+  background: var(--warning-color);
+  color: white;
+}
+
+.insight-card-badge--info {
+  background: var(--info-color);
+  color: white;
+}
+
+.insight-card-message {
+  font-size: 1rem;
+  color: var(--text-primary);
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.insight-card-reason {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.insight-card-feedback {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.insight-card-feedback-btn {
+  flex: 1;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background: var(--bg-primary);
+  cursor: pointer;
+  font-size: 0.875rem;
+  transition: all 0.2s;
+}
+
+.insight-card-feedback-btn--correct:hover {
+  background: var(--success-color);
+  color: white;
+  border-color: var(--success-color);
+}
+
+.insight-card-feedback-btn--incorrect:hover {
+  background: var(--error-color);
+  color: white;
+  border-color: var(--error-color);
+}
+

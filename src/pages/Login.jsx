@@ -9,6 +9,7 @@ import './Auth.css'
 const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [agreedToDisclaimer, setAgreedToDisclaimer] = useState(false)
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
   const { signIn } = useAuth()
@@ -17,6 +18,12 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     setError('')
+
+    if (!agreedToDisclaimer) {
+      setError('Please agree to the disclaimer to continue')
+      return
+    }
+
     setLoading(true)
 
     try {
@@ -24,7 +31,13 @@ const Login = () => {
       if (error) {
         setError(error.message)
       } else {
-        navigate('/dashboard')
+        // Check if user has completed onboarding
+        const hasCompletedOnboarding = localStorage.getItem('onboarding_complete')
+        if (!hasCompletedOnboarding) {
+          navigate('/onboarding/survey')
+        } else {
+          navigate('/app/dashboard')
+        }
       }
     } catch (err) {
       setError('An unexpected error occurred')
@@ -61,6 +74,16 @@ const Login = () => {
             placeholder="Enter your password"
             required
           />
+
+          <label className="auth-checkbox">
+            <input
+              type="checkbox"
+              checked={agreedToDisclaimer}
+              onChange={(e) => setAgreedToDisclaimer(e.target.checked)}
+              required
+            />
+            <span>I agree to the <Link to="/disclaimer" target="_blank">disclaimer</Link> and understand this is for informational purposes only</span>
+          </label>
 
           <AnimatedButton
             type="submit"
