@@ -1,0 +1,126 @@
+.compatibility-matrix {
+  margin: 1.5rem 0;
+  padding: 1.5rem;
+}
+
+.compatibility-matrix-header {
+  margin-bottom: 1rem;
+}
+
+.compatibility-matrix-header h3 {
+  margin: 0 0 0.25rem 0;
+  font-size: 1.25rem;
+  color: #333;
+}
+
+.compatibility-matrix-subtitle {
+  margin: 0;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.compatibility-matrix-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  overflow-x: auto;
+  margin-bottom: 1rem;
+}
+
+.compatibility-matrix-row {
+  display: flex;
+  gap: 0.25rem;
+  min-width: fit-content;
+}
+
+.compatibility-matrix-corner {
+  width: 120px;
+  min-width: 120px;
+  height: 40px;
+}
+
+.compatibility-matrix-header-cell {
+  min-width: 120px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #333;
+  background: #F5F5F5;
+  border-radius: 4px;
+  padding: 0 0.5rem;
+  text-align: center;
+  word-break: break-word;
+}
+
+.compatibility-matrix-cell {
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 1rem;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.compatibility-matrix-cell:hover {
+  transform: scale(1.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+}
+
+.compatibility-matrix-cell--diagonal {
+  background: #E0E0E0;
+  cursor: default;
+}
+
+.compatibility-matrix-cell--compatible {
+  background: #4CAF50;
+  color: white;
+}
+
+.compatibility-matrix-cell--conflict {
+  background: #F44336;
+  color: white;
+}
+
+.compatibility-matrix-legend {
+  display: flex;
+  gap: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid #E0E0E0;
+}
+
+.compatibility-matrix-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.compatibility-matrix-legend-color {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+  .compatibility-matrix-header-cell {
+    min-width: 100px;
+    font-size: 0.7rem;
+  }
+
+  .compatibility-matrix-corner {
+    width: 100px;
+    min-width: 100px;
+  }
+}
+
