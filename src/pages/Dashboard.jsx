@@ -5,6 +5,7 @@ import AnimatedButton from '../components/common/AnimatedButton'
 import ProductCard from '../components/common/ProductCard'
 import CircleCard from '../components/common/CircleCard'
 import InsightCard from '../components/common/InsightCard'
+import ProgressDashboard from '../components/visualizations/ProgressDashboard'
 import { mockUserInsights, mockRecommendedProducts, mockCircles } from '../data/mockData'
 import { products, getProductById } from '../data/products'
 import './Dashboard.css'
@@ -76,6 +77,11 @@ const Dashboard = () => {
             reason: 'Based on your recent check-ins and product usage'
           }}
         />
+      </div>
+
+      {/* Progress Dashboard */}
+      <div className="dashboard-section">
+        <ProgressDashboard />
       </div>
 
       {/* Ingredient Insights */}
