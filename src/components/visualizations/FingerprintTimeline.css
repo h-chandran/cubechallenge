@@ -1,0 +1,210 @@
+.fingerprint-timeline {
+  margin: 2rem 0;
+  padding: 1.5rem;
+}
+
+.fingerprint-timeline-header {
+  margin-bottom: 1.5rem;
+}
+
+.fingerprint-timeline-header h2 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.fingerprint-timeline-subtitle {
+  margin: 0;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.fingerprint-timeline-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.fingerprint-timeline-controls label {
+  font-size: 0.9rem;
+  color: #666;
+  font-weight: 500;
+}
+
+.fingerprint-timeline-select {
+  padding: 0.5rem 1rem;
+  border: 1px solid #E0E0E0;
+  border-radius: 6px;
+  background: white;
+  font-size: 0.9rem;
+  color: #333;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.fingerprint-timeline-select:hover {
+  border-color: #2196F3;
+}
+
+.fingerprint-timeline-select:focus {
+  outline: none;
+  border-color: #2196F3;
+  box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.1);
+}
+
+.fingerprint-timeline-comparison {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  background: #F5F5F5;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.fingerprint-timeline-comparison-item {
+  text-align: center;
+  flex: 1;
+  min-width: 150px;
+}
+
+.fingerprint-timeline-comparison-label {
+  font-size: 0.85rem;
+  color: #666;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.fingerprint-timeline-comparison-value {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.fingerprint-timeline-comparison-metric {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.fingerprint-timeline-comparison-arrow {
+  font-size: 1.5rem;
+  color: #2196F3;
+}
+
+.fingerprint-timeline-comparison-improvement {
+  text-align: center;
+  padding: 1rem;
+  background: #E8F5E9;
+  border-radius: 8px;
+  min-width: 120px;
+}
+
+.fingerprint-timeline-improvement-value {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #2E7D32;
+  margin-bottom: 0.25rem;
+}
+
+.fingerprint-timeline-improvement-label {
+  display: block;
+  font-size: 0.85rem;
+  color: #4CAF50;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.fingerprint-timeline-chart {
+  margin-bottom: 2rem;
+}
+
+.fingerprint-timeline-chart h3 {
+  margin: 0 0 1rem 0;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.fingerprint-timeline-events h3 {
+  margin: 0 0 1rem 0;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.fingerprint-timeline-events-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.fingerprint-timeline-event {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  background: #F9F9F9;
+  border-radius: 8px;
+  border-left: 4px solid #2196F3;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.fingerprint-timeline-event:hover {
+  background: #F0F0F0;
+  transform: translateX(4px);
+}
+
+.fingerprint-timeline-event-marker {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.fingerprint-timeline-event-content {
+  flex: 1;
+}
+
+.fingerprint-timeline-event-date {
+  font-size: 0.85rem;
+  color: #666;
+  margin-bottom: 0.5rem;
+}
+
+.fingerprint-timeline-event-message {
+  font-size: 0.95rem;
+  color: #333;
+  font-weight: 500;
+}
+
+.fingerprint-timeline-event-details {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid #E0E0E0;
+  font-size: 0.85rem;
+  color: #666;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.fingerprint-timeline-events-empty {
+  text-align: center;
+  padding: 2rem;
+  color: #666;
+  font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .fingerprint-timeline-comparison {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .fingerprint-timeline-comparison-arrow {
+    transform: rotate(90deg);
+  }
+}
+
