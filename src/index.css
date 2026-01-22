@@ -5,43 +5,44 @@
 }
 
 :root {
-  /* SkIntel Theme - Light Blue, White, and Green */
-  --primary-color: #E3F2FD; /* Light blue */
-  --primary-dark: #BBDEFB;
-  --primary-darker: #90CAF9;
-  --secondary-color: #4CAF50; /* Green */
-  --secondary-dark: #45A049;
-  --secondary-light: #81C784;
-  --accent-blue: #2196F3;
-  --accent-blue-dark: #1976D2;
+  /* SkIntel Theme - Pink, Light Pink, and White */
+  --primary-color: #FFE4E1; /* Light pink - Misty Rose */
+  --primary-dark: #FFB6C1; /* Light pink */
+  --primary-darker: #FFC0CB; /* Pink */
+  --secondary-color: #FF69B4; /* Hot pink */
+  --secondary-dark: #FF1493; /* Deep pink */
+  --secondary-light: #FFB6C1; /* Light pink */
+  --accent-blue: #FF69B4; /* Hot pink (renamed from accent-blue for consistency) */
+  --accent-blue-dark: #FF1493; /* Deep pink (renamed from accent-blue-dark) */
   
   --text-primary: #1f2937;
   --text-secondary: #6b7280;
   --text-light: #9ca3af;
   
   --bg-primary: #ffffff;
-  --bg-secondary: #F5F9FC;
-  --bg-light-blue: #E3F2FD;
+  --bg-secondary: #FFF0F5; /* Lavender blush - very light pink */
+  --bg-light-blue: #FFE4E1; /* Light pink (renamed from bg-light-blue) */
   --bg-dark: #111827;
   
-  --border-color: #E0E7FF;
-  --border-light: #F3F4F6;
+  --border-color: #FFE4E1; /* Light pink border */
+  --border-light: #FFF0F5; /* Very light pink */
   
   --success-color: #4CAF50;
   --warning-color: #FF9800;
   --error-color: #F44336;
-  --info-color: #2196F3;
+  --info-color: #FF69B4; /* Hot pink */
   
   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
   --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
   --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
-  --shadow-blue: 0 4px 14px 0 rgba(33, 150, 243, 0.15);
+  --shadow-blue: 0 4px 14px 0 rgba(255, 105, 180, 0.15); /* Pink shadow */
 }
 
 /* Apply original color palette to text elements */
 h1, h2, h3, h4, h5, h6 {
   color: var(--accent-blue);
+  font-family: 'EB Garamond', 'Garamond', 'Times New Roman', serif;
 }
 
 p {
