@@ -4,6 +4,8 @@ import AnimatedCard from '../components/common/AnimatedCard'
 import { useUserPreferences } from '../contexts/UserPreferencesContext'
 import { ingredients, getIngredientById } from '../data/ingredients'
 import { mockUserInsights } from '../data/mockData'
+import IngredientNetworkGraph from '../components/visualizations/IngredientNetworkGraph'
+import FingerprintTimeline from '../components/visualizations/FingerprintTimeline'
 import './Fingerprint.css'
 
 const Fingerprint = () => {
@@ -52,6 +54,12 @@ const Fingerprint = () => {
           Personalized ingredient profile based on your routine and check-ins
         </p>
       </div>
+
+      {/* Fingerprint Evolution Timeline */}
+      <FingerprintTimeline />
+
+      {/* Ingredient Network Graph */}
+      <IngredientNetworkGraph />
 
       {/* Likely Works */}
       <div className="fingerprint-section">
