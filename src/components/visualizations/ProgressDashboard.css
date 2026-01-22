@@ -1,0 +1,121 @@
+.progress-dashboard {
+  margin: 2rem 0;
+  padding: 1.5rem;
+}
+
+.progress-dashboard-header {
+  margin-bottom: 1.5rem;
+}
+
+.progress-dashboard-header h2 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.progress-dashboard-subtitle {
+  margin: 0;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.progress-dashboard-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.progress-dashboard-summary-card {
+  padding: 1.5rem;
+  background: #F9F9F9;
+  border-radius: 8px;
+  border-left: 4px solid;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.progress-dashboard-summary-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.progress-dashboard-summary-icon {
+  font-size: 2rem;
+  flex-shrink: 0;
+}
+
+.progress-dashboard-summary-content {
+  flex: 1;
+}
+
+.progress-dashboard-summary-label {
+  font-size: 0.85rem;
+  color: #666;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.progress-dashboard-summary-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.progress-dashboard-trends {
+  margin-bottom: 2rem;
+}
+
+.progress-dashboard-trends h3 {
+  margin: 0 0 1rem 0;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.progress-dashboard-trends-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+}
+
+.progress-dashboard-trend-item {
+  padding: 1rem;
+  background: #F5F5F5;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.progress-dashboard-trend-label {
+  font-size: 0.85rem;
+  color: #666;
+  margin-bottom: 0.5rem;
+  text-transform: capitalize;
+}
+
+.progress-dashboard-trend-value {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.progress-dashboard-chart {
+  margin-top: 2rem;
+}
+
+.progress-dashboard-chart h3 {
+  margin: 0 0 1rem 0;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+@media (max-width: 768px) {
+  .progress-dashboard-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .progress-dashboard-trends-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
