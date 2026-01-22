@@ -32,10 +32,15 @@
 }
 
 .logo-text {
-  background: linear-gradient(135deg, var(--accent-blue) 0%, var(--secondary-color) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  display: inline-block;
+}
+
+.logo-text-sk {
+  color: #39FF14; /* Vibrant bright green (neon green) */
+}
+
+.logo-text-intervine {
+  color: #6B8E23; /* Muted, desaturated green (olive green) */
 }
 
 .navigation-links {

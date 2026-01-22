@@ -29,7 +29,10 @@ const Navigation = () => {
       <div className="navigation-container">
         <Link to="/app/dashboard" className="navigation-logo">
           <span className="logo-icon">🧴</span>
-          <span className="logo-text">SkIntel</span>
+          <span className="logo-text">
+            <span className="logo-text-sk">SK</span>
+            <span className="logo-text-intervine">INTEL</span>
+          </span>
         </Link>
 
         <div className="navigation-links">
