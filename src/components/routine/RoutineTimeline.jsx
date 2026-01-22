@@ -32,12 +32,12 @@ const RoutineTimeline = ({ routine, timeOfDay }) => {
 
   const getFunctionColor = (func) => {
     const colors = {
-      cleanser: '#2196F3',
-      toner: '#42A5F5',
+      cleanser: '#4CAF50',
+      toner: '#66BB6A',
       exfoliant: '#FF9800',
       serum: '#4CAF50',
       treatment: '#9C27B0',
-      moisturizer: '#00BCD4',
+      moisturizer: '#4DB6AC',
       SPF: '#FFC107'
     }
     return colors[func] || '#9E9E9E'

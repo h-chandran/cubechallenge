@@ -44,13 +44,13 @@
 }
 
 .fingerprint-timeline-select:hover {
-  border-color: #2196F3;
+  border-color: #4CAF50;
 }
 
 .fingerprint-timeline-select:focus {
   outline: none;
-  border-color: #2196F3;
-  box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.1);
+  border-color: #4CAF50;
+  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
 }
 
 .fingerprint-timeline-comparison {
@@ -93,7 +93,7 @@
 
 .fingerprint-timeline-comparison-arrow {
   font-size: 1.5rem;
-  color: #2196F3;
+  color: #4CAF50;
 }
 
 .fingerprint-timeline-comparison-improvement {
@@ -148,7 +148,7 @@
   padding: 1rem;
   background: #F9F9F9;
   border-radius: 8px;
-  border-left: 4px solid #2196F3;
+  border-left: 4px solid #4CAF50;
   cursor: pointer;
   transition: all 0.2s;
 }

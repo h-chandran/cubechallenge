@@ -117,12 +117,12 @@ const ProgressDashboard = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
             className="progress-dashboard-summary-card"
-            style={{ borderLeftColor: '#2196F3' }}
+            style={{ borderLeftColor: '#4CAF50' }}
           >
             <div className="progress-dashboard-summary-icon">🎉</div>
             <div className="progress-dashboard-summary-content">
               <div className="progress-dashboard-summary-label">Days Since Last Reaction</div>
-              <div className="progress-dashboard-summary-value" style={{ color: '#2196F3' }}>
+              <div className="progress-dashboard-summary-value" style={{ color: '#4CAF50' }}>
                 {summary.daysSinceLastReaction} days
               </div>
             </div>
@@ -211,7 +211,7 @@ const ProgressDashboard = () => {
             <Line 
               type="monotone" 
               dataKey="dryness" 
-              stroke="#2196F3" 
+              stroke="#4CAF50" 
               strokeWidth={2}
               name="Dryness"
               dot={{ r: 4 }}

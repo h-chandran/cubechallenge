@@ -28,24 +28,24 @@
 
 .ingredient-network-filter {
   padding: 0.5rem 1rem;
-  border: 1px solid #E3F2FD;
+  border: 1px solid #C8E6C9;
   background: white;
   border-radius: 6px;
   cursor: pointer;
   font-size: 0.9rem;
   transition: all 0.2s;
-  color: #2196F3;
+  color: #4CAF50;
 }
 
 .ingredient-network-filter:hover {
-  background: #E3F2FD;
-  border-color: #2196F3;
+  background: #C8E6C9;
+  border-color: #4CAF50;
 }
 
 .ingredient-network-filter.active {
-  background: #2196F3;
+  background: #4CAF50;
   color: white;
-  border-color: #2196F3;
+  border-color: #4CAF50;
 }
 
 .ingredient-network-legend {

@@ -28,7 +28,7 @@
 
 .animated-input:focus {
   outline: none;
-  box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.1);
+  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
 }
 
 .animated-input--error {
