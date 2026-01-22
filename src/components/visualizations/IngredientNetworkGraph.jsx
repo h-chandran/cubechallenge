@@ -110,6 +110,32 @@ const IngredientNetworkGraph = () => {
     return link.type === 'conflict' ? '#F44336' : '#4CAF50'
   }
 
+  // Get emoji icon for canvas rendering - using relevant icons like pills and bottles
+  const getIconEmoji = useCallback((category, id) => {
+    const emojiMap = {
+      'active': '💊',
+      'exfoliant': '🧴',
+      'hydrating': '💧',
+      'barrier': '🧴',
+      'antioxidant': '💊',
+    }
+    
+    // Special cases for specific ingredients
+    const specialEmojis = {
+      'niacinamide': '💊',
+      'vitamin-c': '💊',
+      'retinol': '💊',
+      'peptides': '💊',
+      'vitamin-e': '💊',
+      'hyaluronic-acid': '🧴',
+      'ceramides': '🧴',
+      'aha': '🧴',
+      'bha': '🧴',
+    }
+    
+    return specialEmojis[id] || emojiMap[category] || '💊'
+  }, [])
+
   const handleNodeClick = useCallback((node) => {
     setSelectedNode(selectedNode?.id === node.id ? null : node)
   }, [selectedNode])
@@ -182,22 +208,67 @@ const IngredientNetworkGraph = () => {
           nodeLabel={(node) => `${node.name}\n${node.description}`}
           nodeColor={getNodeColor}
           nodeVal={(node) => {
-            // Size based on number of connections
+            // Smaller size based on number of connections
             const connections = graphData.links.filter(
               link => link.source === node.id || link.target === node.id
             ).length
-            return 5 + connections * 2
+            return 12 + connections * 1.5
           }}
           linkColor={getLinkColor}
           linkWidth={(link) => link.type === 'conflict' ? 3 : 2}
           linkDirectionalArrowLength={6}
           linkDirectionalArrowRelPos={1}
+          // Spread out the network with longer connections
+          linkDistance={250}
+          linkStrength={0.3}
+          nodeRepulsion={200}
+          d3AlphaDecay={0.02}
+          d3VelocityDecay={0.4}
+          // Custom node rendering with icons
+          nodeCanvasObject={(node, ctx, globalScale) => {
+            ctx.textAlign = 'center'
+            ctx.textBaseline = 'middle'
+            
+            const nodeColor = getNodeColor(node)
+            
+            // Calculate smaller node size based on connections
+            const connections = graphData.links.filter(
+              link => link.source === node.id || link.target === node.id
+            ).length
+            const nodeSize = 12 + connections * 1.5
+            
+            // Draw background circle with border
+            ctx.beginPath()
+            ctx.arc(node.x, node.y, nodeSize, 0, 2 * Math.PI, false)
+            ctx.fillStyle = nodeColor
+            ctx.fill()
+            ctx.strokeStyle = '#fff'
+            ctx.lineWidth = 2 / Math.max(globalScale, 0.5)
+            ctx.stroke()
+            
+            // Draw icon emoji (smaller)
+            const iconEmoji = getIconEmoji(node.category, node.id)
+            ctx.fillStyle = '#fff'
+            ctx.font = `${Math.max(nodeSize * 0.7, 10)}px Arial`
+            ctx.textAlign = 'center'
+            ctx.textBaseline = 'middle'
+            ctx.fillText(iconEmoji, node.x, node.y)
+          }}
+          nodeCanvasObjectMode={() => 'replace'}
           onNodeClick={handleNodeClick}
           onNodeHover={handleNodeHover}
           cooldownTicks={100}
           onEngineStop={() => {
             if (graphRef.current) {
-              graphRef.current.zoomToFit(400, 20)
+              // Zoom out for initial display
+              graphRef.current.zoomToFit(400, 50)
+              // Additional zoom out
+              setTimeout(() => {
+                if (graphRef.current) {
+                  const currentZoom = graphRef.current.zoom()
+                  graphRef.current.zoom(currentZoom * 0.7)
+                }
+              }, 100)
             }
           }}
         />
