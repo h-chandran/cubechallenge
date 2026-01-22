@@ -1,155 +1,272 @@
-import { useState, useRef } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { mockOCR } from '../../utils/mockOCR'
-import { analyzeProduct } from '../../utils/ingredientAnalyzer'
+import { analyzeFace, isCameraAvailable } from '../../utils/faceAnalyzer'
 import { useUserPreferences } from '../../contexts/UserPreferencesContext'
-import { getIngredientById } from '../../data/ingredients'
 import AnimatedCard from '../common/AnimatedCard'
 import AnimatedButton from '../common/AnimatedButton'
 import './ProductScanner.css'
 
 const ProductScanner = () => {
-  const navigate = useNavigate()
-  const { preferences } = useUserPreferences()
-  const [uploadedImage, setUploadedImage] = useState(null)
+  const { preferences, updatePreferences } = useUserPreferences()
+  const videoRef = useRef(null)
+  const canvasRef = useRef(null)
+  const streamRef = useRef(null)
+  
+  const [cameraActive, setCameraActive] = useState(false)
+  const [capturedImage, setCapturedImage] = useState(null)
   const [processing, setProcessing] = useState(false)
   const [analysis, setAnalysis] = useState(null)
   const [error, setError] = useState(null)
-  const fileInputRef = useRef(null)
+  const [cameraAvailable, setCameraAvailable] = useState(false)
 
-  const handleFileSelect = async (event) => {
-    const file = event.target.files[0]
-    if (!file) return
-
-    if (!file.type.startsWith('image/')) {
-      setError('Please upload an image file')
-      return
+  useEffect(() => {
+    // Check camera availability on mount
+    isCameraAvailable().then(setCameraAvailable)
+    
+    return () => {
+      // Cleanup: stop camera stream when component unmounts
+      if (streamRef.current) {
+        streamRef.current.getTracks().forEach(track => track.stop())
+      }
     }
+  }, [])
 
-    setError(null)
-    setUploadedImage(URL.createObjectURL(file))
-    setProcessing(true)
-    setAnalysis(null)
-
+  const startCamera = async () => {
     try {
-      const ocrResult = await mockOCR(file)
+      setError(null)
+      const stream = await navigator.mediaDevices.getUserMedia({
+        video: {
+          facingMode: 'user', // Front-facing camera
+          width: { ideal: 1280 },
+          height: { ideal: 720 }
+        }
+      })
       
-      if (ocrResult.success) {
-        const productAnalysis = analyzeProduct(ocrResult.product, preferences || {})
-        setAnalysis({
-          ...productAnalysis,
-          ocrResult,
-          imageUrl: URL.createObjectURL(file)
-        })
-      } else {
-        setError('Failed to extract ingredients. Please try another image.')
+      streamRef.current = stream
+      if (videoRef.current) {
+        videoRef.current.srcObject = stream
+        setCameraActive(true)
+        
+        // Ensure video plays - try multiple approaches for browser compatibility
+        const playVideo = async () => {
+          try {
+            await videoRef.current.play()
+          } catch (playErr) {
+            console.error('Error playing video:', playErr)
+            // Try again after a short delay
+            setTimeout(() => {
+              if (videoRef.current) {
+                videoRef.current.play().catch(err => {
+                  console.error('Retry play error:', err)
+                })
+              }
+            }, 100)
+          }
+        }
+        
+        // Try to play immediately
+        if (videoRef.current.readyState >= 2) {
+          // Video is already loaded
+          playVideo()
+        } else {
+          // Wait for metadata to load
+          videoRef.current.onloadedmetadata = () => {
+            playVideo()
+          }
+        }
       }
     } catch (err) {
-      setError('An error occurred while processing the image.')
+      setError('Unable to access camera. Please ensure camera permissions are granted.')
+      console.error('Camera error:', err)
+      setCameraActive(false)
+    }
+  }
+
+  const stopCamera = () => {
+    if (streamRef.current) {
+      streamRef.current.getTracks().forEach(track => track.stop())
+      streamRef.current = null
+    }
+    setCameraActive(false)
+  }
+
+  const capturePhoto = () => {
+    if (!videoRef.current || !canvasRef.current) return
+
+    const video = videoRef.current
+    const canvas = canvasRef.current
+    const context = canvas.getContext('2d')
+
+    // Set canvas dimensions to match video
+    canvas.width = video.videoWidth
+    canvas.height = video.videoHeight
+
+    // Draw video frame to canvas
+    context.drawImage(video, 0, 0, canvas.width, canvas.height)
+
+    // Convert canvas to blob
+    canvas.toBlob((blob) => {
+      if (blob) {
+        const imageUrl = URL.createObjectURL(blob)
+        setCapturedImage(imageUrl)
+        stopCamera()
+      }
+    }, 'image/jpeg', 0.95)
+  }
+
+  const analyzeCapturedFace = async () => {
+    if (!canvasRef.current) return
+
+    setProcessing(true)
+    setError(null)
+
+    try {
+      // Convert canvas to blob
+      canvasRef.current.toBlob(async (blob) => {
+        if (blob) {
+          const result = await analyzeFace(blob)
+          setAnalysis(result)
+          setProcessing(false)
+        }
+      }, 'image/jpeg', 0.95)
+    } catch (err) {
+      setError('Failed to analyze face. Please try again.')
       console.error(err)
-    } finally {
       setProcessing(false)
     }
   }
 
-  const handleDrop = (event) => {
-    event.preventDefault()
-    const file = event.dataTransfer.files[0]
-    if (file && file.type.startsWith('image/')) {
-      const syntheticEvent = {
-        target: { files: [file] }
-      }
-      handleFileSelect(syntheticEvent)
+  const handleSaveSkinType = () => {
+    if (analysis && analysis.skinType) {
+      updatePreferences({ skin_type: analysis.skinType })
+      alert(`Skin type "${analysis.skinType}" has been saved to your profile!`)
     }
-  }
-
-  const handleDragOver = (event) => {
-    event.preventDefault()
   }
 
   const handleReset = () => {
-    setUploadedImage(null)
+    stopCamera()
+    setCapturedImage(null)
     setAnalysis(null)
     setError(null)
-    if (fileInputRef.current) {
-      fileInputRef.current.value = ''
+    if (canvasRef.current) {
+      const context = canvasRef.current.getContext('2d')
+      context.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height)
     }
   }
 
-  const handleAddToRoutine = () => {
-    if (analysis && analysis.product) {
-      // Store product in localStorage to pass to routine builder
-      localStorage.setItem('scanned_product', JSON.stringify(analysis.product))
-      navigate('/app/routine')
+  const getSkinTypeColor = (skinType) => {
+    const colors = {
+      dry: '#FF9800',
+      oily: '#4CAF50',
+      combination: '#2196F3',
+      normal: '#9C27B0',
+      sensitive: '#F44336'
     }
+    return colors[skinType] || '#666'
   }
 
-  const getMatchScore = () => {
-    if (!analysis) return 0
-    
-    const likedCount = analysis.likedIngredients?.length || 0
-    const conflictCount = analysis.conflicts?.length || 0
-    const sensitivityCount = analysis.sensitivityWarnings?.length || 0
-    const totalIngredients = analysis.ingredients?.length || 1
-    
-    let score = 50 // Base score
-    score += (likedCount / totalIngredients) * 40 // Up to +40 for liked ingredients
-    score -= conflictCount * 15 // -15 per conflict
-    score -= sensitivityCount * 20 // -20 per sensitivity
-    
-    return Math.max(0, Math.min(100, Math.round(score)))
+  const getSkinTypeLabel = (skinType) => {
+    return skinType ? skinType.charAt(0).toUpperCase() + skinType.slice(1) : ''
   }
 
   return (
     <div className="product-scanner">
       <div className="product-scanner-header">
-        <h1>Product Scanner</h1>
+        <h1>Face Analysis</h1>
         <p className="product-scanner-subtitle">
-          Upload a product image to analyze ingredients and compatibility
+          Use your camera to analyze your face and determine your skin type
         </p>
       </div>
 
       {!analysis && (
         <AnimatedCard className="product-scanner-upload">
-          <div
-            className="product-scanner-dropzone"
-            onDrop={handleDrop}
-            onDragOver={handleDragOver}
-            onClick={() => fileInputRef.current?.click()}
-          >
-            <input
-              ref={fileInputRef}
-              type="file"
-              accept="image/*"
-              onChange={handleFileSelect}
-              className="product-scanner-input"
-            />
-            {uploadedImage ? (
-              <div className="product-scanner-preview">
-                <img src={uploadedImage} alt="Uploaded product" />
-                <button 
+          {!cameraActive && !capturedImage && (
+            <div className="product-scanner-camera-setup">
+              {!cameraAvailable ? (
+                <div className="product-scanner-error">
+                  Camera is not available on this device.
+                </div>
+              ) : (
+                <div className="product-scanner-placeholder">
+                  <div className="product-scanner-icon">📷</div>
+                  <p className="product-scanner-placeholder-text">
+                    Ready to analyze your skin
+                  </p>
+                  <p className="product-scanner-placeholder-hint">
+                    Click below to start your camera
+                  </p>
+                  <AnimatedButton
+                    variant="primary"
+                    onClick={startCamera}
+                    className="product-scanner-start-button"
+                  >
+                    Start Camera
+                  </AnimatedButton>
+                </div>
+              )}
+            </div>
+          )}
+
+          {cameraActive && !capturedImage && (
+            <div className="product-scanner-camera-view">
+              <div className="product-scanner-video-container">
+                <video
+                  ref={videoRef}
+                  autoPlay
+                  playsInline
+                  muted
+                  className="product-scanner-video"
+                />
+                <div className="product-scanner-face-guide">
+                  <div className="product-scanner-face-outline"></div>
+                  <p>Position your face within the frame</p>
+                </div>
+              </div>
+              <div className="product-scanner-camera-controls">
+                <AnimatedButton
+                  variant="secondary"
+                  onClick={stopCamera}
+                >
+                  Cancel
+                </AnimatedButton>
+                <button
+                  className="product-scanner-capture-button"
+                  onClick={capturePhoto}
+                  aria-label="Capture photo"
+                >
+                  <span className="product-scanner-capture-icon">📸</span>
+                </button>
+              </div>
+            </div>
+          )}
+
+          {capturedImage && !processing && !analysis && (
+            <div className="product-scanner-captured">
+              <div className="product-scanner-captured-image">
+                <img src={capturedImage} alt="Captured face" />
+                <button
                   className="product-scanner-remove"
-                  onClick={(e) => {
-                    e.stopPropagation()
-                    handleReset()
-                  }}
+                  onClick={handleReset}
                 >
                   ×
                 </button>
               </div>
-            ) : (
-              <div className="product-scanner-placeholder">
-                <div className="product-scanner-icon">📷</div>
-                <p className="product-scanner-placeholder-text">
-                  Click or drag an image here
-                </p>
-                <p className="product-scanner-placeholder-hint">
-                  Upload a product photo to extract ingredients
-                </p>
+              <div className="product-scanner-captured-actions">
+                <AnimatedButton
+                  variant="secondary"
+                  onClick={handleReset}
+                >
+                  Retake
+                </AnimatedButton>
+                <AnimatedButton
+                  variant="primary"
+                  onClick={analyzeCapturedFace}
+                >
+                  Analyze Skin Type
+                </AnimatedButton>
               </div>
-            )}
-          </div>
+            </div>
+          )}
 
           {processing && (
             <motion.div
@@ -158,7 +275,10 @@ const ProductScanner = () => {
               className="product-scanner-processing"
             >
               <div className="product-scanner-spinner"></div>
-              <p>Processing image and extracting ingredients...</p>
+              <p>Analyzing your skin type...</p>
+              <p className="product-scanner-processing-hint">
+                This may take a few seconds
+              </p>
             </motion.div>
           )}
 
@@ -174,6 +294,9 @@ const ProductScanner = () => {
         </AnimatedCard>
       )}
 
+      {/* Hidden canvas for image processing */}
+      <canvas ref={canvasRef} style={{ display: 'none' }} />
+
       <AnimatePresence>
         {analysis && (
           <motion.div
@@ -186,16 +309,18 @@ const ProductScanner = () => {
               {/* Image Side */}
               <AnimatedCard className="product-scanner-results-image">
                 <div className="product-scanner-results-image-header">
-                  <h3>Scanned Product</h3>
-                  <button onClick={handleReset} className="product-scanner-reset">Scan Another</button>
+                  <h3>Your Face Analysis</h3>
+                  <button onClick={handleReset} className="product-scanner-reset">
+                    Analyze Again
+                  </button>
                 </div>
-                <img src={analysis.imageUrl} alt="Scanned product" />
+                <img src={analysis.imageUrl} alt="Analyzed face" />
                 <div className="product-scanner-ocr-info">
                   <span className="product-scanner-ocr-method">
-                    {analysis.ocrResult.method === 'product-match' ? '🔍 Product Matched' : '📝 OCR Extracted'}
+                    🤖 AI Analysis
                   </span>
                   <span className="product-scanner-ocr-confidence">
-                    Confidence: {(analysis.ocrResult.confidence * 100).toFixed(0)}%
+                    Confidence: {(analysis.confidence * 100).toFixed(0)}%
                   </span>
                 </div>
               </AnimatedCard>
@@ -204,91 +329,61 @@ const ProductScanner = () => {
               <AnimatedCard className="product-scanner-results-analysis">
                 <div className="product-scanner-results-header">
                   <div>
-                    <h3>{analysis.product.name}</h3>
-                    <p className="product-scanner-brand">{analysis.product.brand}</p>
+                    <h3>Detected Skin Type</h3>
+                    <p className="product-scanner-brand">
+                      Based on facial analysis
+                    </p>
                   </div>
-                  <div className="product-scanner-match-score">
-                    <div className="product-scanner-match-value">{getMatchScore()}%</div>
-                    <div className="product-scanner-match-label">Match</div>
-                  </div>
-                </div>
-
-                {/* Extracted Ingredients */}
-                <div className="product-scanner-section">
-                  <h4>Extracted Ingredients</h4>
-                  <div className="product-scanner-ingredients">
-                    {analysis.ingredients.map((ingId, idx) => {
-                      const ing = getIngredientById(ingId)
-                      const isLiked = analysis.likedIngredients?.some(li => li.ingredient === ingId)
-                      const isSensitive = analysis.sensitivityWarnings?.some(sw => sw.ingredient === ingId)
-                      
-                      return (
-                        <span
-                          key={idx}
-                          className={`product-scanner-ingredient ${
-                            isLiked ? 'product-scanner-ingredient--liked' : ''
-                          } ${
-                            isSensitive ? 'product-scanner-ingredient--sensitive' : ''
-                          }`}
-                        >
-                          {ing?.name || ingId}
-                          {isLiked && ' ✓'}
-                          {isSensitive && ' ⚠️'}
-                        </span>
-                      )
-                    })}
-                  </div>
-                </div>
-
-                {/* Compatibility Issues */}
-                {analysis.hasIssues && (
-                  <div className="product-scanner-section product-scanner-section--warning">
-                    <h4>⚠️ Compatibility Issues</h4>
-                    {analysis.conflicts?.length > 0 && (
-                      <div className="product-scanner-issues">
-                        {analysis.conflicts.map((conflict, idx) => (
-                          <div key={idx} className="product-scanner-issue">
-                            <strong>{conflict.ingredient1}</strong> + <strong>{conflict.ingredient2}</strong>
-                            <p>{conflict.reason}</p>
-                          </div>
-                        ))}
-                      </div>
-                    )}
-                    {analysis.sensitivityWarnings?.length > 0 && (
-                      <div className="product-scanner-issues">
-                        {analysis.sensitivityWarnings.map((warning, idx) => (
-                          <div key={idx} className="product-scanner-issue">
-                            <strong>{warning.name}</strong>
-                            <p>{warning.reason}</p>
-                          </div>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                )}
-
-                {/* Positive Matches */}
-                {analysis.hasLikedIngredients && (
-                  <div className="product-scanner-section product-scanner-section--success">
-                    <h4>✅ Ingredients That Work For You</h4>
-                    <div className="product-scanner-liked">
-                      {analysis.likedIngredients.map((item, idx) => (
-                        <span key={idx} className="product-scanner-liked-item">
-                          {item.name}
-                        </span>
-                      ))}
+                  <div 
+                    className="product-scanner-match-score"
+                    style={{ 
+                      background: `${getSkinTypeColor(analysis.skinType)}20`,
+                      border: `2px solid ${getSkinTypeColor(analysis.skinType)}`
+                    }}
+                  >
+                    <div 
+                      className="product-scanner-match-value"
+                      style={{ color: getSkinTypeColor(analysis.skinType) }}
+                    >
+                      {getSkinTypeLabel(analysis.skinType)}
+                    </div>
+                    <div 
+                      className="product-scanner-match-label"
+                      style={{ color: getSkinTypeColor(analysis.skinType) }}
+                    >
+                      Skin Type
                     </div>
                   </div>
-                )}
+                </div>
+
+                {/* Characteristics */}
+                <div className="product-scanner-section">
+                  <h4>Detected Characteristics</h4>
+                  <ul className="product-scanner-characteristics">
+                    {analysis.characteristics.map((char, idx) => (
+                      <li key={idx}>{char}</li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Recommendations */}
+                <div className="product-scanner-section product-scanner-section--success">
+                  <h4>💡 Recommendations</h4>
+                  <ul className="product-scanner-recommendations">
+                    {analysis.recommendations.map((rec, idx) => (
+                      <li key={idx}>{rec}</li>
+                    ))}
+                  </ul>
+                </div>
 
                 {/* Actions */}
                 <div className="product-scanner-actions">
                   <AnimatedButton
                     variant="primary"
-                    onClick={handleAddToRoutine}
+                    onClick={handleSaveSkinType}
                     className="product-scanner-add-button"
                   >
-                    Add to Routine
+                    Save to Profile
                   </AnimatedButton>
                 </div>
               </AnimatedCard>
@@ -301,4 +396,3 @@ const ProductScanner = () => {
 }
 
 export default ProductScanner
-

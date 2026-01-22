@@ -131,7 +131,7 @@ const FingerprintTimeline = () => {
             <YAxis 
               stroke="#666"
               tick={{ fontSize: 12 }}
-              domain={[0, 100]}
+              domain={[0, 80]}
               label={{ value: 'Confidence %', angle: -90, position: 'insideLeft' }}
             />
             <Tooltip 

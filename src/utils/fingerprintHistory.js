@@ -25,17 +25,21 @@ export const generateFingerprintHistory = (daysBack = 60) => {
     const date = new Date(today)
     date.setDate(date.getDate() - i)
     
-    // Simulate gradual confidence changes
-    const progressFactor = i / daysBack // 0 = oldest, 1 = newest
+    // Simulate gradual confidence changes - increase from 40% to 80%
+    // i goes from daysBack (oldest) to 0 (newest), so progressFactor = 1 (oldest) to 0 (newest)
+    const progressFactor = i / daysBack // 1 = oldest, 0 = newest
+    
+    // Confidence increases linearly from 0.4 (40%) at oldest to 0.8 (80%) at newest
+    const baseConfidence = 0.4 + ((1 - progressFactor) * 0.4) // 0.4 (oldest) to 0.8 (newest)
     
     const likelyWorks = baseLikelyWorks.map(item => ({
       ...item,
-      confidence: Math.max(0.3, item.confidence * (0.5 + progressFactor * 0.5))
+      confidence: baseConfidence
     }))
     
     const possibleTriggers = basePossibleTriggers.map(item => ({
       ...item,
-      confidence: Math.max(0.3, item.confidence * (0.5 + progressFactor * 0.5))
+      confidence: baseConfidence
     }))
 
     // Add some variation - occasionally discover new ingredients
@@ -57,12 +61,30 @@ export const generateFingerprintHistory = (daysBack = 60) => {
       })
     }
 
-    // Simulate check-in correlation
+    // Simulate check-in correlation - improving from 2-3 to 0-1
+    // Start with higher values (2-3) at oldest and decrease to lower values (0-1) at newest
+    // progressFactor = 1 (oldest) to 0 (newest)
+    const baseBreakout = 2 + Math.floor(Math.random() * 2) // 2-3 for older dates
+    const improvedBreakout = Math.floor(Math.random() * 2) // 0-1 for newer dates
+    const breakout = progressFactor > 0.7 ? baseBreakout : improvedBreakout
+    
+    const baseIrritation = 2 + Math.floor(Math.random() * 2)
+    const improvedIrritation = Math.floor(Math.random() * 2)
+    const irritation = progressFactor > 0.6 ? baseIrritation : improvedIrritation
+    
+    const baseDryness = 2 + Math.floor(Math.random() * 2)
+    const improvedDryness = Math.floor(Math.random() * 2)
+    const dryness = progressFactor > 0.8 ? baseDryness : improvedDryness
+    
+    const baseRedness = 2 + Math.floor(Math.random() * 2)
+    const improvedRedness = Math.floor(Math.random() * 2)
+    const redness = progressFactor > 0.7 ? baseRedness : improvedRedness
+    
     const checkinCorrelation = {
-      breakout: Math.max(0, Math.floor(Math.random() * 2) - (progressFactor > 0.7 ? 1 : 0)),
-      irritation: Math.max(0, Math.floor(Math.random() * 2) - (progressFactor > 0.6 ? 1 : 0)),
-      dryness: Math.max(0, Math.floor(Math.random() * 2) - (progressFactor > 0.8 ? 1 : 0)),
-      redness: Math.max(0, Math.floor(Math.random() * 2) - (progressFactor > 0.7 ? 1 : 0))
+      breakout,
+      irritation,
+      dryness,
+      redness
     }
 
     history.push({
@@ -71,7 +93,7 @@ export const generateFingerprintHistory = (daysBack = 60) => {
       possibleTriggers,
       discoveredIngredients,
       checkinCorrelation,
-      overallConfidence: likelyWorks.reduce((sum, item) => sum + item.confidence, 0) / likelyWorks.length
+      overallConfidence: baseConfidence // Use the calculated base confidence (40% to 80%)
     })
   }
 
