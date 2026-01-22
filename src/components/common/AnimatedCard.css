@@ -1,0 +1,13 @@
+.animated-card {
+  background: var(--bg-primary);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-color);
+  transition: box-shadow 0.3s ease;
+}
+
+.animated-card:hover {
+  box-shadow: var(--shadow-lg);
+}
+

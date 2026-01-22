@@ -1,0 +1,217 @@
+.ingredient-checker {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.ingredient-checker-header {
+  margin-bottom: 2rem;
+}
+
+.ingredient-checker-header h2 {
+  font-size: 2rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 30%, #f093fb 60%, #4facfe 100%);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: rainbow 3s ease infinite;
+  margin-bottom: 0.5rem;
+}
+
+.ingredient-checker-header p {
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 30%, #43e97b 60%, #a8edea 100%);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: rainbow 5s ease infinite;
+}
+
+@keyframes rainbow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.search-section {
+  margin-bottom: 2rem;
+}
+
+.search-input-group {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.search-input-group .animated-input {
+  flex: 1;
+}
+
+.search-results {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.product-result-item {
+  padding: 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.product-result-item:hover {
+  background: var(--primary-color);
+  border-color: var(--accent-blue);
+}
+
+.product-result-name {
+  font-weight: 600;
+  background: linear-gradient(135deg, #fa709a 0%, #fee140 30%, #30cfd0 60%, #667eea 100%);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: rainbow 4s ease infinite;
+  margin-bottom: 0.25rem;
+}
+
+.product-result-brand {
+  font-size: 0.875rem;
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 30%, #43e97b 60%, #a8edea 100%);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: rainbow 5s ease infinite;
+  margin-bottom: 0.25rem;
+}
+
+.product-result-function {
+  font-size: 0.75rem;
+  background: linear-gradient(135deg, #a8edea 0%, #fed6e3 30%, #ff9a9e 60%, #fecfef 100%);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: rainbow 4.5s ease infinite;
+  text-transform: capitalize;
+}
+
+.analysis-section {
+  margin-top: 2rem;
+}
+
+.analysis-section h3 {
+  font-size: 1.5rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 30%, #f093fb 60%, #4facfe 100%);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: rainbow 3s ease infinite;
+  margin-bottom: 0.25rem;
+}
+
+.product-brand {
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 30%, #43e97b 60%, #a8edea 100%);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: rainbow 5s ease infinite;
+  margin-bottom: 1.5rem;
+}
+
+.analysis-section-positive,
+.analysis-section-warnings,
+.analysis-section-ingredients,
+.analysis-section-neutral {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.analysis-section-positive h4,
+.analysis-section-warnings h4,
+.analysis-section-ingredients h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  background: linear-gradient(135deg, #fa709a 0%, #fee140 30%, #30cfd0 60%, #667eea 100%);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: rainbow 4s ease infinite;
+}
+
+.warning-group {
+  margin-bottom: 1rem;
+}
+
+.warning-item {
+  padding: 0.75rem 1rem;
+  background: #FFF3CD;
+  border-left: 4px solid var(--warning-color);
+  border-radius: 4px;
+  margin-bottom: 0.5rem;
+  font-size: 0.875rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 30%, #f093fb 60%, #4facfe 100%);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: rainbow 3s ease infinite;
+  background-color: #FFF3CD;
+}
+
+.warning-item-error {
+  background: #FEE2E2;
+  border-left-color: var(--error-color);
+}
+
+.ingredient-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tag {
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tag-default {
+  background: var(--primary-color);
+  color: var(--accent-blue);
+  border: 1px solid var(--accent-blue);
+}
+
+.tag-default:hover {
+  background: var(--accent-blue);
+  color: white;
+}
+
+.tag-positive {
+  background: #D1FAE5;
+  color: var(--secondary-color);
+  border: 1px solid var(--secondary-color);
+}
+
+.analysis-section-neutral {
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 30%, #43e97b 60%, #a8edea 100%);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: rainbow 5s ease infinite;
+  font-style: italic;
+}
+

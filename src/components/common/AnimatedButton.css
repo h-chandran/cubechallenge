@@ -1,0 +1,47 @@
+.animated-button {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.animated-button--primary {
+  background: var(--accent-blue);
+  color: white;
+}
+
+.animated-button--primary:hover {
+  background: var(--accent-blue-dark);
+}
+
+.animated-button--secondary {
+  background: var(--secondary-color);
+  color: white;
+}
+
+.animated-button--secondary:hover {
+  background: var(--secondary-dark);
+}
+
+.animated-button--outline {
+  background: transparent;
+  border: 2px solid var(--accent-blue);
+  color: var(--accent-blue);
+}
+
+.animated-button--outline:hover {
+  background: var(--primary-color);
+}
+
+.animated-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
