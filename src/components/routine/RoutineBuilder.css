@@ -261,13 +261,13 @@
   border-radius: 4px;
   margin-bottom: 0.5rem;
   font-size: 0.875rem;
+  line-height: 1.5;
   background-image: linear-gradient(135deg, #667eea 0%, #764ba2 30%, #f093fb 60%, #4facfe 100%);
   background-size: 300% 300%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   animation: rainbow 3s ease infinite;
-  line-height: 1.5;
 }
 
 .warning-item-error {
@@ -316,13 +316,13 @@
   padding: 1rem;
   background-color: #D1FAE5;
   border-radius: 8px;
+  font-weight: 500;
   background-image: linear-gradient(135deg, #4facfe 0%, #00f2fe 30%, #43e97b 60%, #a8edea 100%);
   background-size: 300% 300%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   animation: rainbow 5s ease infinite;
-  font-weight: 500;
 }
 
 .analysis-empty {
