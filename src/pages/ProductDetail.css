@@ -1,0 +1,247 @@
+.product-detail {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.product-detail-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.product-detail-header {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.product-detail-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.product-detail-brand {
+  font-size: 1.125rem;
+  color: var(--text-secondary);
+}
+
+.product-detail-match {
+  text-align: center;
+  padding: 2rem;
+  background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-blue-dark) 100%);
+  color: white;
+}
+
+.product-detail-match-score {
+  margin-bottom: 1rem;
+}
+
+.product-detail-match-value {
+  display: block;
+  font-size: 4rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.product-detail-match-label {
+  display: block;
+  font-size: 1rem;
+  opacity: 0.9;
+  margin-top: 0.5rem;
+}
+
+.product-detail-match-reasons {
+  margin-top: 1.5rem;
+}
+
+.product-detail-match-reason {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  opacity: 0.95;
+}
+
+.product-detail-section {
+  padding: 1.5rem;
+}
+
+.product-detail-section h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--accent-blue);
+}
+
+.product-detail-function {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.product-detail-function-badge {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: var(--accent-blue);
+  color: white;
+  border-radius: 8px;
+  font-weight: 600;
+  width: fit-content;
+  text-transform: capitalize;
+}
+
+.product-detail-function-guidance {
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.product-detail-ingredients {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.product-detail-ingredient {
+  padding: 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background: var(--bg-primary);
+}
+
+.product-detail-ingredient--liked {
+  border-color: var(--success-color);
+  background: rgba(76, 175, 80, 0.05);
+}
+
+.product-detail-ingredient--disliked,
+.product-detail-ingredient--sensitive {
+  border-color: var(--error-color);
+  background: rgba(244, 67, 54, 0.05);
+}
+
+.product-detail-ingredient-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.product-detail-ingredient-name {
+  font-weight: 600;
+  color: var(--text-primary);
+  text-transform: capitalize;
+}
+
+.product-detail-ingredient-badge {
+  font-size: 0.75rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-weight: 600;
+}
+
+.product-detail-ingredient-badge--warning {
+  background: var(--warning-color);
+  color: white;
+}
+
+.product-detail-ingredient-badge--error {
+  background: var(--error-color);
+  color: white;
+}
+
+.product-detail-ingredient-desc {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.product-detail-circle-summary {
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.product-detail-circle-summary a {
+  color: var(--accent-blue);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.product-detail-circle-summary a:hover {
+  text-decoration: underline;
+}
+
+.product-detail-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.product-detail-action {
+  flex: 1;
+  max-width: 200px;
+}
+
+.product-detail-buy {
+  text-align: center;
+}
+
+.product-detail-buy-links {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.product-detail-buy-link {
+  padding: 0.75rem 1.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  color: var(--accent-blue);
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.product-detail-buy-link:hover {
+  border-color: var(--accent-blue);
+  background: var(--bg-light-blue);
+}
+
+.product-detail-error {
+  text-align: center;
+  padding: 4rem 2rem;
+}
+
+.product-detail-error h2 {
+  margin-bottom: 1rem;
+}
+
+.product-detail-error a {
+  color: var(--accent-blue);
+  text-decoration: none;
+}
+
+.product-detail-error a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .product-detail {
+    padding: 1rem;
+  }
+
+  .product-detail-header h1 {
+    font-size: 2rem;
+  }
+
+  .product-detail-match-value {
+    font-size: 3rem;
+  }
+
+  .product-detail-actions {
+    flex-direction: column;
+  }
+
+  .product-detail-action {
+    max-width: 100%;
+  }
+}
+

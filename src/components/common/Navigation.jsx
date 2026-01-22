@@ -15,30 +15,38 @@ const Navigation = () => {
     return location.pathname === path ? 'active' : ''
   }
 
-  if (!user) {
+  // Don't show navigation on landing page or auth pages
+  const isPublicPage = location.pathname === '/' || 
+                       location.pathname === '/login' || 
+                       location.pathname === '/signup'
+
+  if (!user || isPublicPage) {
     return null
   }
 
   return (
     <nav className="navigation">
       <div className="navigation-container">
-        <Link to="/dashboard" className="navigation-logo">
+        <Link to="/app/dashboard" className="navigation-logo">
           <span className="logo-icon">🧴</span>
           <span className="logo-text">SkIntel</span>
         </Link>
 
         <div className="navigation-links">
-          <Link to="/dashboard" className={`navigation-link ${isActive('/dashboard')}`}>
+          <Link to="/app/dashboard" className={`navigation-link ${isActive('/app/dashboard')}`}>
             Dashboard
           </Link>
-          <Link to="/ingredient-checker" className={`navigation-link ${isActive('/ingredient-checker')}`}>
-            Ingredient Checker
+          <Link to="/app/search" className={`navigation-link ${isActive('/app/search')}`}>
+            Search
           </Link>
-          <Link to="/routine-builder" className={`navigation-link ${isActive('/routine-builder')}`}>
-            Routine Builder
+          <Link to="/app/routine" className={`navigation-link ${isActive('/app/routine')}`}>
+            Routine
           </Link>
-          <Link to="/profile" className={`navigation-link ${isActive('/profile')}`}>
-            Profile
+          <Link to="/app/community" className={`navigation-link ${isActive('/app/community')}`}>
+            Community
+          </Link>
+          <Link to="/app/fingerprint" className={`navigation-link ${isActive('/app/fingerprint')}`}>
+            Fingerprint
           </Link>
         </div>
 

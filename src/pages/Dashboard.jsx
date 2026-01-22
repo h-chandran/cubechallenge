@@ -2,72 +2,144 @@ import { Link } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
 import AnimatedCard from '../components/common/AnimatedCard'
 import AnimatedButton from '../components/common/AnimatedButton'
+import ProductCard from '../components/common/ProductCard'
+import CircleCard from '../components/common/CircleCard'
+import InsightCard from '../components/common/InsightCard'
+import { mockUserInsights, mockRecommendedProducts, mockCircles } from '../data/mockData'
+import { products, getProductById } from '../data/products'
 import './Dashboard.css'
 
 const Dashboard = () => {
   const { user } = useAuth()
 
+  const handleAddToAM = (product) => {
+    // Add to AM routine logic
+    console.log('Add to AM:', product)
+    alert(`Added ${product.name} to AM routine`)
+  }
+
+  const handleAddToPM = (product) => {
+    // Add to PM routine logic
+    console.log('Add to PM:', product)
+    alert(`Added ${product.name} to PM routine`)
+  }
+
+  const recommendedProductsWithData = mockRecommendedProducts.map(rec => ({
+    ...rec,
+    product: getProductById(rec.productId)
+  })).filter(rec => rec.product)
+
+  const userCircles = mockCircles.slice(0, 3)
+
   return (
     <div className="dashboard">
       <div className="dashboard-header">
-        <h1>Welcome to SkIntel</h1>
-        <p className="dashboard-subtitle">
-          Your personalized ingredient-centric skincare companion
-        </p>
+        <h1>Welcome back!</h1>
+        <p className="dashboard-subtitle">Your personalized skincare hub</p>
       </div>
 
-      <div className="dashboard-grid">
-        <AnimatedCard className="dashboard-card" delay={0.1}>
-          <div className="dashboard-card-icon">🔍</div>
-          <h3>Ingredient Checker</h3>
-          <p>Analyze product ingredients for compatibility, sensitivities, and conflicts</p>
-          <Link to="/ingredient-checker">
-            <AnimatedButton variant="primary" className="dashboard-card-button">
-              Check Ingredients
-            </AnimatedButton>
+      {/* Today Actions */}
+      <div className="dashboard-section">
+        <h2 className="dashboard-section-title">Today's Actions</h2>
+        <div className="dashboard-actions">
+          <Link to="/app/checkin">
+            <AnimatedCard className="dashboard-action-card">
+              <div className="dashboard-action-icon">☀️</div>
+              <h3>Log AM Routine</h3>
+              <p>Track your morning products</p>
+            </AnimatedCard>
           </Link>
-        </AnimatedCard>
-
-        <AnimatedCard className="dashboard-card" delay={0.2}>
-          <div className="dashboard-card-icon">✨</div>
-          <h3>Routine Builder</h3>
-          <p>Build your personalized skincare routine with automatic compatibility checking</p>
-          <Link to="/routine-builder">
-            <AnimatedButton variant="primary" className="dashboard-card-button">
-              Build Routine
-            </AnimatedButton>
+          <Link to="/app/checkin">
+            <AnimatedCard className="dashboard-action-card">
+              <div className="dashboard-action-icon">🌙</div>
+              <h3>Log PM Routine</h3>
+              <p>Track your evening products</p>
+            </AnimatedCard>
           </Link>
-        </AnimatedCard>
-
-        <AnimatedCard className="dashboard-card" delay={0.3}>
-          <div className="dashboard-card-icon">👤</div>
-          <h3>Profile & Preferences</h3>
-          <p>Manage your ingredient preferences, sensitivities, and skin type</p>
-          <Link to="/profile">
-            <AnimatedButton variant="secondary" className="dashboard-card-button">
-              View Profile
-            </AnimatedButton>
+          <Link to="/app/checkin">
+            <AnimatedCard className="dashboard-action-card">
+              <div className="dashboard-action-icon">📊</div>
+              <h3>Daily Check-in</h3>
+              <p>How's your skin today?</p>
+            </AnimatedCard>
           </Link>
-        </AnimatedCard>
+        </div>
       </div>
 
-      <AnimatedCard className="dashboard-info" delay={0.4}>
-        <h3>About SkIntel</h3>
-        <p>
-          SkIntel is an ingredient-centric skincare app that helps you understand how ingredients
-          interact with each other and your skin. Unlike traditional skin-type based approaches,
-          we focus on what your skin actually likes and doesn't like at the ingredient level.
-        </p>
-        <ul className="dashboard-features">
-          <li>✓ Ingredient compatibility checking</li>
-          <li>✓ Personalized sensitivity tracking</li>
-          <li>✓ Function-based routine organization</li>
-          <li>✓ Conflict detection and warnings</li>
-        </ul>
-      </AnimatedCard>
+      {/* Latest Insight */}
+      <div className="dashboard-section">
+        <h2 className="dashboard-section-title">Your Latest Insight</h2>
+        <InsightCard 
+          insight={{
+            message: mockUserInsights.latestInsight.message,
+            confidence: mockUserInsights.latestInsight.confidence,
+            reason: 'Based on your recent check-ins and product usage'
+          }}
+        />
+      </div>
+
+      {/* Ingredient Insights */}
+      <div className="dashboard-section">
+        <h2 className="dashboard-section-title">Your Ingredient Profile</h2>
+        <div className="dashboard-ingredients">
+          <div className="dashboard-ingredient-group">
+            <h3>✅ Likely Works</h3>
+            {mockUserInsights.likelyWorks.map((item, idx) => (
+              <div key={idx} className="dashboard-ingredient-item">
+                <span className="dashboard-ingredient-name">{item.ingredient}</span>
+                <span className={`dashboard-ingredient-confidence dashboard-ingredient-confidence--${item.confidence}`}>
+                  {item.confidence} confidence
+                </span>
+              </div>
+            ))}
+          </div>
+          <div className="dashboard-ingredient-group">
+            <h3>⚠️ Possible Trigger</h3>
+            {mockUserInsights.possibleTriggers.map((item, idx) => (
+              <div key={idx} className="dashboard-ingredient-item">
+                <span className="dashboard-ingredient-name">{item.ingredient}</span>
+                <span className={`dashboard-ingredient-confidence dashboard-ingredient-confidence--${item.confidence}`}>
+                  {item.confidence} confidence
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Your Circles */}
+      <div className="dashboard-section">
+        <h2 className="dashboard-section-title">Your Circles</h2>
+        <div className="dashboard-circles">
+          {userCircles.map((circle) => (
+            <CircleCard key={circle.id} circle={circle} />
+          ))}
+        </div>
+        <Link to="/app/community">
+          <AnimatedButton variant="outline" className="dashboard-view-all">
+            View All Circles
+          </AnimatedButton>
+        </Link>
+      </div>
+
+      {/* Recommended Products */}
+      <div className="dashboard-section">
+        <h2 className="dashboard-section-title">Recommended for You</h2>
+        <div className="dashboard-products">
+          {recommendedProductsWithData.map((rec) => (
+            <ProductCard
+              key={rec.productId}
+              product={rec.product}
+              matchScore={rec.matchScore}
+              reason={rec.reason}
+              onAddToAM={handleAddToAM}
+              onAddToPM={handleAddToPM}
+            />
+          ))}
+        </div>
+      </div>
     </div>
   )
 }
 
 export default Dashboard
-

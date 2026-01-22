@@ -1,0 +1,140 @@
+.fingerprint {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.fingerprint-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.fingerprint-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.fingerprint-subtitle {
+  font-size: 1.125rem;
+  color: var(--text-secondary);
+}
+
+.fingerprint-section {
+  margin-bottom: 3rem;
+}
+
+.fingerprint-section-title {
+  font-size: 1.75rem;
+  color: var(--accent-blue);
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.fingerprint-section-icon {
+  font-size: 2rem;
+}
+
+.fingerprint-ingredients {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.fingerprint-ingredient-card {
+  padding: 1.5rem;
+}
+
+.fingerprint-ingredient-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.fingerprint-ingredient-name {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+  text-transform: capitalize;
+}
+
+.fingerprint-confidence-badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.fingerprint-confidence-badge--success {
+  background: var(--success-color);
+  color: white;
+}
+
+.fingerprint-confidence-badge--warning {
+  background: var(--warning-color);
+  color: white;
+}
+
+.fingerprint-confidence-badge--info {
+  background: var(--info-color);
+  color: white;
+}
+
+.fingerprint-expand-btn {
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--border-color);
+  border-radius: 50%;
+  background: var(--bg-primary);
+  color: var(--accent-blue);
+  font-size: 1.25rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+
+.fingerprint-expand-btn:hover {
+  border-color: var(--accent-blue);
+  background: var(--bg-light-blue);
+}
+
+.fingerprint-ingredient-details {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.fingerprint-ingredient-reason {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.fingerprint-ingredient-desc {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .fingerprint {
+    padding: 1rem;
+  }
+
+  .fingerprint-header h1 {
+    font-size: 2rem;
+  }
+
+  .fingerprint-section-title {
+    font-size: 1.5rem;
+  }
+}
+
