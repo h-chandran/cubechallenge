@@ -1,0 +1,190 @@
+.similarity-heatmap {
+  margin: 2rem 0;
+  padding: 1.5rem;
+}
+
+.similarity-heatmap-header {
+  margin-bottom: 1.5rem;
+}
+
+.similarity-heatmap-header h2 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.similarity-heatmap-subtitle {
+  margin: 0;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.similarity-heatmap-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  overflow-x: auto;
+}
+
+.similarity-heatmap-row {
+  display: grid;
+  grid-template-columns: 200px 100px 100px;
+  gap: 0.5rem;
+  align-items: center;
+  min-width: fit-content;
+}
+
+.similarity-heatmap-header-row {
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #E0E0E0;
+}
+
+.similarity-heatmap-corner {
+  /* Empty corner cell */
+}
+
+.similarity-heatmap-header-cell {
+  font-weight: 600;
+  color: #333;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.similarity-heatmap-label-cell {
+  font-size: 0.9rem;
+  color: #333;
+  font-weight: 500;
+  padding: 0.5rem;
+  text-transform: capitalize;
+}
+
+.similarity-heatmap-cell {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: white;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+}
+
+.similarity-heatmap-cell:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+}
+
+.similarity-heatmap-summary {
+  display: flex;
+  justify-content: space-around;
+  padding: 1rem;
+  background: #F5F5F5;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.similarity-heatmap-summary-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.similarity-heatmap-summary-label {
+  font-size: 0.85rem;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.similarity-heatmap-summary-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #4CAF50;
+}
+
+.similarity-heatmap-summary-value--conflict {
+  color: #F44336;
+}
+
+.similarity-heatmap-legend {
+  padding-top: 1rem;
+  border-top: 1px solid #E0E0E0;
+}
+
+.similarity-heatmap-legend-section h4 {
+  margin: 0 0 0.75rem 0;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.similarity-heatmap-legend-items {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.similarity-heatmap-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.similarity-heatmap-legend-color {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.similarity-heatmap-tooltip {
+  position: fixed;
+  background: white;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  pointer-events: none;
+  max-width: 250px;
+}
+
+.similarity-heatmap-tooltip-ingredient {
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+.similarity-heatmap-tooltip-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.85rem;
+  color: #666;
+}
+
+@media (max-width: 768px) {
+  .similarity-heatmap-row {
+    grid-template-columns: 150px 80px 80px;
+  }
+
+  .similarity-heatmap-label-cell {
+    font-size: 0.8rem;
+  }
+
+  .similarity-heatmap-cell {
+    height: 35px;
+    font-size: 1rem;
+  }
+}
+
