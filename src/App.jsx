@@ -16,6 +16,7 @@ import Checkin from './pages/Checkin'
 import Fingerprint from './pages/Fingerprint'
 import Community from './pages/Community'
 import Circle from './pages/Circle'
+import ProductScannerPage from './pages/ProductScannerPage'
 import './App.css'
 
 function App() {
@@ -112,6 +113,14 @@ function App() {
                   element={
                     <ProtectedRoute>
                       <Circle />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/app/scanner"
+                  element={
+                    <ProtectedRoute>
+                      <ProductScannerPage />
                     </ProtectedRoute>
                   }
                 />
